@@ -1,0 +1,22 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./react-app-ssashayurchenko
+      dockerfile: Dockerfile
+    ports:
+      - '3001:80'
+  
+  backend:
+    build:
+      context: ./java-app-ssashayurchenko
+      dockerfile: Dockerfile
+    environment:
+      DB_USERNAME: sa
+      DB_PASSWORD: 
+    ports:
+      - '8080:8080' 
+
+    volumes:
+      - ./logs:/app/logs 
+      - ./sql:/app/sql  
